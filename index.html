@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis Analyzer v0.1</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <h1>Tennis Analyzer</h1>
+        <p>v0.1 clickable prototype</p>
+      </div>
+      <button id="resetAllButton" class="danger-button">全データ削除</button>
+    </header>
+
+    <main class="layout">
+      <section class="input-panel">
+        <div class="point-header">
+          <h2 id="pointTitle">Point 1</h2>
+          <button id="clearCurrentButton" class="sub-button">現在入力をクリア</button>
+        </div>
+
+<div class="field-block compact-two">
+  <div>
+    <h3>S/R</h3>
+    <div class="button-row" data-field="sr">
+      <button data-value="S">S</button>
+      <button data-value="R">R</button>
+    </div>
+  </div>
+
+  <div>
+    <h3>1st / 2nd</h3>
+    <div class="button-row" data-field="serveNumber">
+      <button data-value="1">1st</button>
+      <button data-value="2">2nd</button>
+      <button data-value="DF">DF</button>
+    </div>
+  </div>
+</div>
+
+        <div class="field-block">
+          <h3>Serve Course</h3>
+          <div class="serve-course" data-field="serveCourse">
+            <button data-value="DW">DW</button>
+            <button data-value="DB">DB</button>
+            <button data-value="DC" class="center-left">DC</button>
+            <button data-value="AC" class="center-right">AC</button>
+            <button data-value="AB">AB</button>
+            <button data-value="AW">AW</button>
+          </div>
+        </div>
+
+<div class="field-block compact-two">
+  <div>
+    <h3>Return Type</h3>
+    <div class="button-row" data-field="returnType">
+      <button data-value="Block">Block</button>
+      <button data-value="Drive">Drive</button>
+      <button data-value="Slice">Slice</button>
+    </div>
+  </div>
+
+  <div>
+    <h3>Serve Result</h3>
+    <div class="button-row" data-field="serveResult">
+      <button data-value="Ace">Ace</button>
+      <button data-value="優位">優位</button>
+      <button data-value="均衡">均衡</button>
+      <button data-value="劣勢">劣勢</button>
+    </div>
+  </div>
+</div>
+
+        <div class="field-block">
+          <h3>Rally</h3>
+          <div class="rally-row" data-field="rally">
+            <button data-value="0">0</button>
+            <button data-value="1">1</button>
+            <button data-value="2">2</button>
+            <button data-value="3">3</button>
+            <button data-value="4">4</button>
+            <button data-value="5">5</button>
+            <button data-value="6">6</button>
+            <button data-value="7">7</button>
+            <button data-value="8">8</button>
+            <button data-value="9">9</button>
+            <button data-value="10+">10+</button>
+          </div>
+        </div>
+<div class="field-block">
+  <h3>Final Shot</h3>
+  <div class="button-row" data-field="finalShot">
+    <button data-value="FT">FT</button>
+    <button data-value="FS">FS</button>
+    <button data-value="BT">BT</button>
+    <button data-value="BS">BS</button>
+    <button data-value="FV">FV</button>
+    <button data-value="BV">BV</button>
+    <button data-value="SM">SM</button>
+    <button data-value="LOB">LOB</button>
+  </div>
+</div>
+
+<div class="field-block">
+  <h3>Position</h3>
+  <div class="court-grid" data-field="position">
+    <button data-value="1L">1L</button>
+    <button data-value="1C">1C</button>
+    <button data-value="1R">1R</button>
+    <button data-value="2L">2L</button>
+    <button data-value="2C">2C</button>
+    <button data-value="2R">2R</button>
+    <button data-value="3L">3L</button>
+    <button data-value="3C">3C</button>
+    <button data-value="3R">3R</button>
+  </div>
+</div>
+
+<div class="field-block compact-three">
+  <div>
+    <h3>Final Result</h3>
+    <div class="button-row" data-field="finalResult">
+      <button data-value="Winner">Winner</button>
+      <button data-value="Out">Out</button>
+      <button data-value="Net">Net</button>
+    </div>
+  </div>
+
+  <div>
+    <h3>Point</h3>
+    <div class="button-row" data-field="pointWinner">
+      <button data-value="Me">Me</button>
+      <button data-value="Opponent">Opp</button>
+    </div>
+  </div>
+
+  <div>
+    <h3>Error Reason</h3>
+    <div class="button-row" data-field="errorReason">
+      <button data-value="Easy">Easy</button>
+      <button data-value="Forced">Forced</button>
+      <button data-value="Balance">Balance</button>
+    </div>
+  </div>
+</div>
+
+<div class="field-block effective-line">
+  <h3>Effective Shot</h3>
+  <div class="effective-grid">
+    <div class="button-row effective-shot-buttons" data-field="effectiveShot">
+      <button data-value="FT">FT</button>
+      <button data-value="FS">FS</button>
+      <button data-value="BT">BT</button>
+      <button data-value="BS">BS</button>
+      <button data-value="FV">FV</button>
+      <button data-value="BV">BV</button>
+    </div>
+
+    <div class="button-row effective-player-buttons" data-field="effectivePlayer">
+      <button data-value="Me">Me</button>
+      <button data-value="Opponent">Opp</button>
+    </div>
+  </div>
+</div>
+<div class="field-block">
+  <h3>Form Check</h3>
+  <div class="button-row multi-check">
+    <button id="tensionButton" data-check="tension">力み</button>
+    <button id="footStopButton" data-check="footStop">足止</button>
+  </div>
+</div>
+        <div class="action-row">
+          <button id="savePointButton" class="main-button">Save & Next</button>
+        </div>
+      </section>
+
+      <aside class="points-panel">
+        <div class="points-header">
+          <h2>Points</h2>
+          <span id="pointCount">0 points</span>
+        </div>
+        <div id="pointsList" class="points-list"></div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

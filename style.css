@@ -1,0 +1,433 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f4f5f7;
+  color: #222;
+}
+
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  color: #666;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 16px;
+}
+
+.input-panel,
+.points-panel {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.point-header,
+.points-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.point-header h2,
+.points-header h2 {
+  margin: 0;
+}
+
+.field-block {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #eee;
+}
+
+.field-block h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.button-row,
+.rally-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  border: 1px solid #bbb;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 64px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ececec;
+}
+
+button.selected {
+  background: #1f7a4d;
+  color: #fff;
+  border-color: #1f7a4d;
+  font-weight: 700;
+}
+
+.serve-course {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  border: 2px solid #222;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 720px;
+}
+
+.serve-course button {
+  border-radius: 0;
+  border: 0;
+  border-right: 1px solid #aaa;
+  min-height: 54px;
+  font-weight: 700;
+}
+
+.serve-course button:last-child {
+  border-right: 0;
+}
+
+.serve-course .center-left {
+  border-right: 4px solid #222;
+}
+
+.serve-course .center-right {
+  border-left: 0;
+}
+
+.action-row {
+  margin-top: 24px;
+}
+
+.main-button {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  background: #1f4f9c;
+  color: #fff;
+  border-color: #1f4f9c;
+}
+
+.main-button:hover {
+  background: #173e7d;
+}
+
+.sub-button {
+  min-width: auto;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.danger-button {
+  min-width: auto;
+  background: #fff0f0;
+  border-color: #d66;
+  color: #a40000;
+}
+
+.danger-button:hover {
+  background: #ffdede;
+}
+
+.points-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.point-item {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.point-item:hover {
+  background: #f0f4ff;
+}
+
+.point-number {
+  font-weight: 700;
+  color: #555;
+}
+
+.point-summary {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty-message {
+  color: #777;
+  padding: 12px;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .serve-course {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .serve-course .center-left {
+    border-right: 1px solid #aaa;
+  }
+}
+
+.point-item.editing {
+  background: #fff7d6;
+  border-color: #d8a900;
+}
+
+.point-item.next-point {
+  border: 2px dashed #999;
+  background: #f7f7f7;
+}
+
+.point-item.active-next {
+  background: #eaf3ff;
+  border-color: #1f4f9c;
+}
+
+.point-item.next-point .point-summary {
+  font-weight: 700;
+  color: #1f4f9c;
+}
+
+.court-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 420px;
+  border: 2px solid #222;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.court-grid button {
+  border-radius: 0;
+  border: 0;
+  border-right: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  min-height: 54px;
+  font-weight: 700;
+}
+
+.court-grid button:nth-child(3n) {
+  border-right: 0;
+}
+
+.court-grid button:nth-child(n + 7) {
+  border-bottom: 0;
+}
+
+.sub-row {
+  margin-top: 8px;
+}
+
+button.selected {
+  background: #ffdca8;
+  color: #222;
+  border-color: #f0a94a;
+  font-weight: 700;
+}
+
+.compact-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.field-block {
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.field-block h3 {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+button {
+  padding: 8px 10px;
+  min-width: 54px;
+  font-size: 14px;
+}
+
+.serve-course button,
+.court-grid button {
+  min-height: 42px;
+}
+
+.main-button {
+  padding: 12px;
+}
+
+.compact-three {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr 1.2fr;
+  gap: 12px;
+}
+
+.effective-line h3 {
+  margin-bottom: 5px;
+}
+
+.effective-grid {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 12px;
+  align-items: center;
+}
+
+.effective-shot-buttons {
+  padding-right: 12px;
+  border-right: 4px solid #222;
+}
+
+.effective-player-buttons {
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .compact-three {
+    grid-template-columns: 1fr;
+  }
+
+  .effective-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .effective-shot-buttons {
+    border-right: 0;
+    padding-right: 0;
+  }
+}
+
+/* Neutral selected: S/R, Serve Course, Return Type, Final Shot, Position */
+.button-row[data-field="sr"] button.selected,
+.serve-course[data-field="serveCourse"] button.selected,
+.button-row[data-field="returnType"] button.selected,
+.button-row[data-field="finalShot"] button.selected,
+.court-grid[data-field="position"] button.selected {
+  background: #ffdca8;
+  border-color: #f0a94a;
+  color: #222;
+}
+
+
+/* =========================
+   Color Rules
+   ========================= */
+
+/* ---------- GOOD (Green) ---------- */
+
+.button-row[data-field="serveNumber"] button[data-value="1"].selected,
+.button-row[data-field="serveResult"] button[data-value="Ace"].selected,
+.button-row[data-field="serveResult"] button[data-value="優位"].selected,
+.button-row[data-field="pointWinner"] button[data-value="Me"].selected,
+.button-row[data-field="errorReason"] button[data-value="Forced"].selected{
+
+    background:#CDEFD6;
+    border-color:#7CCB93;
+    color:#135B2F;
+}
+
+/* ---------- NEUTRAL (Orange) ---------- */
+
+.button-row[data-field="serveNumber"] button[data-value="2"].selected,
+.button-row[data-field="serveResult"] button[data-value="均衡"].selected,
+.button-row[data-field="errorReason"] button[data-value="Balance"].selected,
+
+.button-row[data-field="sr"] button.selected,
+.serve-course[data-field="serveCourse"] button.selected,
+.button-row[data-field="returnType"] button.selected,
+.button-row[data-field="finalShot"] button.selected,
+.court-grid[data-field="position"] button.selected{
+
+    background:#FFE6B8;
+    border-color:#E8B85C;
+    color:#6C4A00;
+}
+
+/* ---------- BAD (Red) ---------- */
+
+.button-row[data-field="serveNumber"] button[data-value="DF"].selected,
+.button-row[data-field="serveResult"] button[data-value="劣勢"].selected,
+.button-row[data-field="pointWinner"] button[data-value="Opponent"].selected,
+.button-row[data-field="errorReason"] button[data-value="Easy"].selected,
+
+.multi-check button.selected{
+
+    background:#F8D4D4;
+    border-color:#DD8A8A;
+    color:#8B1E1E;
+}
+
+
+.point-win{
+    background:#E6F7EA;
+    border-left:6px solid #66C17A;
+}
+
+.point-win:hover{
+    background:#D8F2DE;
+}
+
+.point-lose{
+    background:#FBE8E8;
+    border-left:6px solid #E08080;
+}
+
+.point-lose:hover{
+    background:#F8DDDD;
+}
